@@ -21,11 +21,16 @@ RSpec.describe User, type: :model do
     end
 
     it "starts with zero available points" do
+      binding.pry
       expect(user.available_points).to eq(0)
     end
 
     it "starts with zero redeemed points" do
       expect(user.redeemed_points).to eq(0)
+    end
+
+    it "has default role by default" do
+      expect(user.role).to eq("default")
     end
 
   end
