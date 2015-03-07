@@ -15,4 +15,13 @@ RSpec.describe "User dashboard" do
       expect(page).to have_content("Redeemed Points: 100")
     end
   end
+
+  xit "shows available rewards" do
+    reward_1 = Reward.create(title: "car", worth: 1000)
+    reward_2 = Reward.create(title: "sandwich", worth: 50)
+
+    within("#available_rewards") do
+      expect(page).to have_content("car")
+    end
+  end
 end

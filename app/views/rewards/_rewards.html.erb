@@ -1,0 +1,10 @@
+<table id="available_rewards">
+  <colgroup span="3" class="columns"></colgroup>
+  <tr>
+    <th>Title</th>
+    <th>Worth</th>
+  </tr>
+  <% @rewards.each do |reward| %>
+    <tr><td><%= reward.title %></td><td><%= reward.worth %></tr>
+  <% end %>
+</table>
