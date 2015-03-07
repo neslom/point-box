@@ -41,4 +41,15 @@ RSpec.feature "Default User login" do
       expect(page).to have_content("Invalid login")
     end
 
+    scenario "clicks logout link to logout" do
+      user = User.create(username: "molsen", password: "password")
+
+      login_as(user)
+
+      expect(page).to have_link("Logout", href: logout_path)
+
+      click_link_or_button("Logout")
+
+      expect(current_path).to eq(login_path)
+    end
 end
