@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   enum role: %w(default admin)
+
+  def convert_points(amount)
+    decrement(:available_points, amount).increment(:redeemed_points, amount)
+  end
 end
