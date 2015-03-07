@@ -1,1 +1,7 @@
-Welcome, <%= current_user.username %>!
+<h3>Logged in as <%= current_user.username %></h3>
+
+<table id="user_points">
+  <tr>
+    <th>Available Points: </th><th><%= current_user.available_points %></th>
+  </tr>
+</table>
