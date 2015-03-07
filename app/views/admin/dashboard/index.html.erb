@@ -1,0 +1,7 @@
+<h1>Administration</h1>
+<h3>Logged in as <%= current_user.username %> </h3>
+
+<ul>
+  <li> <%= link_to 'Manage User Points', admin_users_path %> </li>
+  <li> <%= link_to 'Manage Rewards', admin_rewards_path %> </li>
+</ul>
