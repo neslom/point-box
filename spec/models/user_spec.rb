@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe ".create" do
-    let(:user) { User.create(username: "molsen", password: "password", available_points: 10, redeemed_points: 0) }
+    let(:user) { User.create(username: "molsen", password: "password") }
 
     it "is valid with a username and password" do
       expect(user).to be_valid
@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
 
     it "is invalid with missing username" do
       user.username = nil
+
       expect(user).to_not be_valid
     end
 
@@ -18,5 +19,14 @@ RSpec.describe User, type: :model do
 
       expect(user).to_not be_valid
     end
+
+    it "starts with zero available points" do
+      expect(user.available_points).to eq(0)
+    end
+
+    it "starts with zero redeemed points" do
+      expect(user.redeemed_points).to eq(0)
+    end
+
   end
 end
