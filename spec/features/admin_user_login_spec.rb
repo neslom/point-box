@@ -13,5 +13,13 @@ RSpec.feature "Admin login" do
     click_link_or_button "Log in"
 
     expect(current_path).to eq(admin_path(admin))
+
+    within("h1") do
+      expect(page).to have_content("Administration")
+    end
+
+    within("h3") do
+      expect(page).to have_content("Logged in as Bob")
+    end
   end
 end
