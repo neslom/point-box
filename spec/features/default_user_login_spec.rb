@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User login" do
-  context "as default role" do
+RSpec.feature "Default User login" do
     scenario "logs in with valid username and password" do
       user = User.create(username: "molsen", password: "password")
 
@@ -41,13 +40,5 @@ RSpec.feature "User login" do
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Invalid login")
     end
-  end
 
-  context "as admin role" do
-    scenario "is taken to admin dashboard" do
-      user = User.create(username: "Bob", password: "password", role: 1)
-
-      expect(user.role).to eq("admin")
-    end
-  end
 end

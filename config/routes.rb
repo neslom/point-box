@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
 
+  namespace :admin do
+    get '/', to: "dashboard#index"
+  end
+
   resources :users
 end
