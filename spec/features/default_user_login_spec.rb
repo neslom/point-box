@@ -11,7 +11,7 @@ RSpec.feature "Default User login" do
       click_link_or_button "Log in"
 
       expect(current_path).to eq(user_path(user))
-      expect(page).to have_content("Welcome, molsen!")
+      expect(page).to have_content("Logged in as molsen")
       expect(page).not_to have_content("Invalid login")
     end
 
@@ -51,5 +51,7 @@ RSpec.feature "Default User login" do
       click_link_or_button("Logout")
 
       expect(current_path).to eq(login_path)
+
+      within("#flash_notice") { expect(page).to have_content("You have been logged out") }
     end
 end
