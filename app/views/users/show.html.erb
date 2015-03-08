@@ -1,5 +1,7 @@
 <h3>Logged in as <%= current_user.username %></h3>
 
+<%= link_to "View Available Rewards", rewards_path %>
+
 <h3>Your Points</h3>
 <table id="user_points">
   <tr>
@@ -10,9 +12,3 @@
     <th>Redeemed Points: </th><td><%= current_user.redeemed_points %></td>
   </tr>
 </table>
-
-<h3>Available Rewards</h3>
-
-<%= render 'rewards/rewards' %>
-
-

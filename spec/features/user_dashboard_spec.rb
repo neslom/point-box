@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "User dashboard" do
+  Reward.create(title: "car", worth: 1000)
+  Reward.create(title: "sandwich", worth: 50)
   let(:user) { User.create(username: "markus", password: "password", available_points: 50, redeemed_points: 100) }
   before(:each) { login_as(user) }
 
@@ -16,12 +18,13 @@ RSpec.describe "User dashboard" do
     end
   end
 
-  xit "shows available rewards" do
-    reward_1 = Reward.create(title: "car", worth: 1000)
-    reward_2 = Reward.create(title: "sandwich", worth: 50)
+  it "shows available rewards" do
+    expect(page).to have_link("View Available Rewards")
 
-    within("#available_rewards") do
-      expect(page).to have_content("car")
-    end
+    click_link_or_button("View Available Rewards")
+
+    expect(current_path).to eq(rewards_path)
+    expect(page).to have_content("car")
+    expect(page).to have_content("sandwich")
   end
 end
