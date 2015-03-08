@@ -13,7 +13,15 @@ Rails.application.routes.draw do
     resources :rewards
   end
 
-  resources :rewards
+  resources :rewards, only: [:index]
 
   resources :users
+
+  #post "users/:id/rewards/:id", to: "redeemed_rewards#create"
+
+  #resources :users, only: [:show] do
+    #resources :redeemed_rewards, only: [:new, :create]
+  #end
+  #
+  resources :redeemed_rewards, only: [:create]
 end
