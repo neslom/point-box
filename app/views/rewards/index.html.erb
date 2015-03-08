@@ -7,6 +7,6 @@
     <th>Worth</th>
   </tr>
   <% @rewards.each do |reward| %>
-    <tr><td><%= reward.title %></td><td><%= reward.worth %></tr>
+    <tr><td><%= reward.title %></td><td><%= reward.worth %><td><%= link_to "Redeem Reward", user_path(current_user), method: :put%></td></tr>
   <% end %>
 </table>
