@@ -35,6 +35,16 @@ RSpec.describe "Rewards index page" do
         expect(current_path).to eq(user_path(user))
       end
 
+      it "converts the User's points from available to redeemed" do
+        expect(user.available_points).to eq(900)
+        expect(user.redeemed_points).to eq(0)
+
+        find_link("Redeem Reward", href: redeemed_rewards_path(reward_id: reward_2.id, user_id: user.id)).click
+
+        expect(user.available_points).to eq(850)
+        expect(user.redeemed_points).to eq(50)
+      end
+
     end
 
     context "when the User does not have enough available points" do
