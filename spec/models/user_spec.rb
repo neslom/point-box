@@ -37,21 +37,21 @@ RSpec.describe User, type: :model do
     it "can be added" do
       expect(user.available_points).to eq(0)
 
-      user.increment(:available_points)
+      user.increment!(:available_points)
 
       expect(user.available_points).to eq(1)
 
-      user.increment(:available_points, 10)
+      user.increment!(:available_points, 10)
 
       expect(user.available_points).to eq(11)
     end
 
     it "can be subtracted" do
-      user.increment(:available_points, 10)
+      user.increment!(:available_points, 10)
 
       expect(user.available_points).to eq(10)
 
-      user.decrement(:available_points, 5)
+      user.decrement!(:available_points, 5)
 
       expect(user.available_points).to eq(5)
     end
@@ -60,28 +60,28 @@ RSpec.describe User, type: :model do
       it "can be added" do
         expect(user.redeemed_points).to eq(0)
 
-        user.increment(:redeemed_points)
+        user.increment!(:redeemed_points)
 
         expect(user.redeemed_points).to eq(1)
 
-        user.increment(:redeemed_points, 10)
+        user.increment!(:redeemed_points, 10)
 
         expect(user.redeemed_points).to eq(11)
       end
 
       it "can be subtracted" do
-        user.increment(:redeemed_points, 10)
+        user.increment!(:redeemed_points, 10)
 
         expect(user.redeemed_points).to eq(10)
 
-        user.decrement(:redeemed_points, 5)
+        user.decrement!(:redeemed_points, 5)
 
         expect(user.redeemed_points).to eq(5)
       end
 
       context "#convert_points" do
         it "converts available points to redeemed points" do
-          user.increment(:available_points, 10)
+          user.increment!(:available_points, 10)
 
           expect(user.available_points).to eq(10)
           expect(user.redeemed_points).to eq(0)
