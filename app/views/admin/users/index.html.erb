@@ -1,0 +1,24 @@
+<h1>Current Users</h1>
+
+<table id="current_users">
+      <colgroup span="2" class="columns"></colgroup>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+    </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td> <%= user.username %></td>
+      <td>
+        <ul>
+          <li><%= link_to 'Edit Points', edit_admin_user_path(user) %></li>
+          <li><%= link_to 'Delete User', user, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to 'Create User', new_user_path %>
