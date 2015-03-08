@@ -1,0 +1,16 @@
+<h3>Your Rewards</h3>
+
+<table id="user_rewards">
+  <colgroup span="2" class="columns"></colgroup>
+  <tr>
+    <th>Title</th>
+    <th>Worth</th>
+  </tr>
+
+  <% current_user.rewards.each do |reward| %>
+    <tr>
+      <td><%= reward.title %></td>
+      <td><%= reward.worth %></td>
+    </tr>
+<% end %>
+</table>
