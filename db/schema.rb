@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307224548) do
+ActiveRecord::Schema.define(version: 20150308041249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "redeemed_rewards", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reward_id"
+  end
+
+  add_index "redeemed_rewards", ["reward_id"], name: "index_redeemed_rewards_on_reward_id", using: :btree
+  add_index "redeemed_rewards", ["user_id"], name: "index_redeemed_rewards_on_user_id", using: :btree
 
   create_table "rewards", force: :cascade do |t|
     t.text    "title"
