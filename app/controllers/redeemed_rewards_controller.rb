@@ -5,13 +5,13 @@ class RedeemedRewardsController < ApplicationController
   def create
     redeemed_reward = RedeemedReward.new(user_id: params[:user_id], reward_id: params[:reward_id])
 
-    if current_user.available_points > Reward.find(params[:reward_id]).worth
+    if current_user.available_points >= Reward.find(params[:reward_id]).worth
       redeemed_reward.save
       flash[:notice] = "The reward is now yours"
       redirect_to user_path(current_user)
     else
       flash[:notice] = "Sorry, you don't have enough available points!"
-      redirect_to user_path(current_user)
+      redirect_to rewards_path
     end
   end
 
