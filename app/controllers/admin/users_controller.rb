@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
+  before_action :is_admin?
+
   def index
     @users = User.all
   end
@@ -25,5 +27,12 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :available_points, :redeemed_points)
+  end
+
+  def is_admin?
+    if !current_user.admin?
+      redirect_to user_path(current_user)
+      flash[:error] = "Not authorized"
+    end
   end
 end

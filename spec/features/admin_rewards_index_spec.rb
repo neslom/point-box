@@ -43,6 +43,5 @@ RSpec.describe "Admin Rewards Index" do
     end
 
     expect(Reward.count).to eq(1)
-
   end
 end
