@@ -17,9 +17,21 @@ RSpec.describe "Admin Users Index" do
     end
   end
 
-  it "can edit the users points" do
+  xit "can edit the users points" do
     find_link("Edit Points", href: edit_admin_user_path(user_1)).click
 
     expect(current_path).to eq(edit_admin_user_path(user_1))
+
+    fill_in("user[available_points]", with: 77)
+    #fill_in("user[password]", with: user_1.password_digest)
+
+    hidden = find :xpath, "//input[@id='user_password']"
+    hidden.set(user_1.password_digest)
+
+    click_link_or_button("Update User")
+
+    expect(current_path).to eq(admin_users_path)
+
+    expect(user_1.available_points).to eq(77)
   end
 end
