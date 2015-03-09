@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "User dashboard" do
-  let(:reward_1) { Reward.create(title: "car", worth: 1000) }
+  let!(:reward_1) { Reward.create(title: "car", worth: 1000) }
 
-  let(:reward_2) { Reward.create(title: "sandwich", worth: 50) }
+  let!(:reward_2) { Reward.create(title: "sandwich", worth: 50) }
 
   let(:user) { User.create(username: "markus", password: "password", available_points: 50, redeemed_points: 100) }
 
