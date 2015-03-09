@@ -17,9 +17,4 @@ class RedeemedRewardsController < ApplicationController
     end
   end
 
-  private
-
-  def redeemed_reward_params
-    params.require(:redeemed_reward).permit(:user_id, :reward_id)
-  end
 end

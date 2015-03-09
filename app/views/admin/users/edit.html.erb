@@ -1,7 +1,7 @@
 <p>Edit <em><%= @user.username %>'s</em> points</p>
 <%= form_for([:admin, @user]) do |f| %>
 
-  <%= f.hidden_field :password, value: @user.password_digest %>
+  <%= f.hidden_field :password, value: :password %>
 
   <%= f.label :available_points %>
   <%= f.text_field :available_points %>

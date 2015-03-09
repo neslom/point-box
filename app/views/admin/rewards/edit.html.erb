@@ -1,0 +1,12 @@
+<p>Edit Rewards</p>
+
+<%= form_for([:admin, @reward]) do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title%>
+
+  <%= f.label :worth %>
+  <%= f.text_field :worth %>
+
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,26 @@
+<h1>Rewards</h1>
+
+<table id="current_rewards">
+      <colgroup span="3" class="columns"></colgroup>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Worth</th>
+    </tr>
+
+  <% @rewards.each do |reward| %>
+    <tr>
+      <td><%= reward.id %></td>
+      <td> <%= reward.title %></td>
+      <td> <%= reward.worth %></td>
+      <td>
+        <ul>
+          <li><%= link_to 'Edit Reward', edit_admin_reward_path(reward) %></li>
+          <li><%= link_to 'Delete Reward', admin_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to 'Create Reward', new_admin_reward_path %>
