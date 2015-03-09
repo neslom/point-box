@@ -16,4 +16,19 @@ RSpec.describe "Admin Rewards Index" do
       expect(page).to have_content("sandwich")
     end
   end
+
+
+  xit "can edit a reward" do
+    find_link("Edit Reward", href: edit_admin_reward_path(reward_1)).click
+
+    expect(current_path).to eq(edit_admin_reward_path(reward_1))
+    expect(reward_1.title).to eq("car")
+
+    fill_in("reward[title]", with: "Beach trip")
+
+    click_link_or_button("Update Reward")
+
+    expect(reward_1.title).to eq("Beach trip")
+    expect(current_path).to eq(admin_rewards_path)
+  end
 end
