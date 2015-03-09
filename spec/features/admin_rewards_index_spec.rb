@@ -31,4 +31,18 @@ RSpec.describe "Admin Rewards Index" do
     expect(reward_1.title).to eq("Beach trip")
     expect(current_path).to eq(admin_rewards_path)
   end
+
+  it "can delete a reward" do
+    expect(page).to have_content("car")
+    expect(Reward.count).to eq(2)
+
+    find_link("Delete Reward", href: admin_reward_path(reward_1)).click
+
+    within("#flash_notice") do
+      expect(page).to have_content("Reward successfully deleted")
+    end
+
+    expect(Reward.count).to eq(1)
+
+  end
 end
