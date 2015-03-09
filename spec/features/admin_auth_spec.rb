@@ -1,22 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe "Admin auth" do
-  let!(:admin_1) { User.create(username: "markus", password: "password", role: 1) }
-  let!(:admin_2) { User.create(username: "sally", password: "password", role: 1) }
+  let!(:admin) { User.create(username: "markus", password: "password", role: 1) }
+  let!(:user) { User.create(username: "sally", password: "password", available_points: 300, redeemed_points: 100) }
 
+  it "cannot be viewed by default user" do
+    login_as(user)
 
-  #before(:each) do
-    #login_as(user_1)
-    #allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
-  #end
-
-  it "must be logged in to view user's page" do
-    visit user_path(user_2)
+    visit admin_path
 
     within("#flash_error") do
-      expect(page).to have_content("Please login")
+      expect(page).to have_content("Not authorized")
     end
 
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(user_path(user))
+  end
+
+  it "can view users pages" do
+    login_as(admin)
+
+    visit user_path(user)
+
+    expect(page).to have_content("Your Rewards")
   end
 end
