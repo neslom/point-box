@@ -11,6 +11,15 @@ RSpec.describe "Admin Users Index" do
   end
 
   it "sees a list of users" do
-    expect(page).to have_content("sally")
+    within("#current_users") do
+      expect(page).to have_content("sally")
+      expect(page).to have_content("molsen")
+    end
+  end
+
+  it "can edit the users points" do
+    find_link("Edit Points", href: edit_admin_user_path(user_1)).click
+
+    expect(current_path).to eq(edit_admin_user_path(user_1))
   end
 end

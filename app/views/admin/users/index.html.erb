@@ -1,16 +1,18 @@
 <h1>Current Users</h1>
 
 <table id="current_users">
-      <colgroup span="2" class="columns"></colgroup>
+      <colgroup span="3" class="columns"></colgroup>
     <tr>
       <th>ID</th>
       <th>Username</th>
+      <th>Role</th>
     </tr>
 
   <% @users.each do |user| %>
     <tr>
       <td><%= user.id %></td>
       <td> <%= user.username %></td>
+      <td> <%= user.role %></td>
       <td>
         <ul>
           <li><%= link_to 'Edit Points', edit_admin_user_path(user) %></li>
